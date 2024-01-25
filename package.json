@@ -11,8 +11,13 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.11.6",
-    "prisma": "^5.8.1",
+    "dotenv": "^16.4.1",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
-  }
+  },
+  "workspaces": [
+    "gateway_service",
+    "proyect_service"
+  ]
 }
