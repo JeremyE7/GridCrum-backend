@@ -1,0 +1,143 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DEV_DATABASE_URL")
+}
+
+// Definir el modelo Prisma
+model Item {
+  id         Int       @id @default(autoincrement())
+  i          String
+  x          Int
+  y          Int
+  w          Int
+  h          Int
+  typeId     Int
+  type       Type      @relation(fields: [typeId], references: [id])
+  board      Board     @relation(fields: [boardId], references: [id])
+  boardId    Int       @unique
+  task       Task?     @relation(fields: [taskId], references: [id])
+  taskId     Int?      @unique
+  img        Img?      @relation(fields: [imgId], references: [id])
+  imgId      Int?      @unique
+  video      Video?    @relation(fields: [videoId], references: [id])
+  videoId    Int?      @unique
+  audio      Audio?    @relation(fields: [audioId], references: [id])
+  audioId    Int?      @unique
+  link       Link?     @relation(fields: [linkId], references: [id])
+  linkId     Int?      @unique
+  project    Project?  @relation(fields: [projectId], references: [id])
+  projectId  Int?      @unique
+  reminder   Reminder? @relation(fields: [reminderId], references: [id])
+  reminderId Int?      @unique
+}
+
+model Type {
+  id    Int    @id @default(autoincrement())
+  name  String
+  items Item[]
+}
+
+model Tag {
+  id       Int       @id @default(autoincrement())
+  name     String
+  color    String
+  tasks    Task[]
+  projects Project[]
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  image       String
+  tags        Tag[]
+  springs     Spring[]
+  item        Item?
+}
+
+model Spring {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+  state       String
+  proyect     Project  @relation(fields: [proyectId], references: [id])
+  proyectId   Int
+  tasks       Task[]
+}
+
+model Task {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+  state       String
+  reminders   Reminder[]
+  tags        Tag[]
+  spring      Spring     @relation(fields: [springId], references: [id])
+  springId    Int
+  items       Item?
+}
+
+model Board {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+  state       String
+  items       Item[]
+}
+
+model Reminder {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+  state       String
+  tasks       Task     @relation(fields: [taskId], references: [id])
+  taskId      Int
+  item        Item?
+}
+
+model Img {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  url         String
+  item        Item?
+}
+
+model Video {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  url         String
+  item        Item?
+}
+
+model Audio {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  url         String
+  item        Item?
+}
+
+model Link {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  url         String
+  item        Item?
+}
