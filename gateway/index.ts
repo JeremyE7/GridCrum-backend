@@ -1,6 +1,6 @@
 import express, { json } from 'express'
 // import { corsMiddleware } from './middlewares/cors.js'
-import { projectRouter } from './routes/project.routes'
+import { projectRouter } from './routes/gateway.project.routes'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -10,10 +10,10 @@ app.disable('x-powered-by') // Fix: Assign the value directly to the x-powered-b
 app.use(json())
 // app.use(corsMiddleware)
 
-app.use('/api', projectRouter)
+app.use('/api/projects', projectRouter)
 
-const PORT = process.env.PORT_PROJECTS ?? 3001
+const PORT = process.env.PORT_GATEWAY ?? 3000
 
 app.listen(PORT, () => {
-    console.log('Server Proyects on port http://localhost:' + PORT)
+    console.log('Server Gateway on port http://localhost:' + PORT)
 })

@@ -1,5 +1,5 @@
 import { Project, ProjectItem } from '../../types';
-import { prisma } from "../db.js";
+import { prisma } from "../db";
 
 export class ProjectModel {
     static async getAll(): Promise<ProjectItem[] | { error: string, msg: string }> {
