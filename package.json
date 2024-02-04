@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm-run-all --parallel gateway:dev project:dev",
+    "dev": "npm-run-all --parallel gateway:dev project:dev user:dev",
     "gateway:dev": "env-cmd -f ./.env npm --workspace gateway run dev",
-    "project:dev": "npm --workspace project run dev"
+    "project:dev": "npm --workspace project run dev",
+    "user:dev": "npm --workspace user run dev"
   },
   "keywords": [],
   "author": "",

@@ -1,6 +1,10 @@
 import { Router } from 'express'
 import { UserController } from '../controllers/user_controller'
+import { validateSession } from '../middleware/isUserAuthenticated'
 
-export const projectRouter = Router()
+export const userRouter = Router()
 
-projectRouter.get('/', UserController.getAll)
+userRouter.get('/', validateSession, UserController.getAll)
+userRouter.post('/', UserController.registerUser)
+userRouter.post('/login', UserController.loginLocal)
+userRouter.post('/logout', UserController.logout)

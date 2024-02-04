@@ -10,11 +10,20 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "prisma": "^5.8.1"
-  },
   "dependencies": {
-    "@prisma/client": "^5.8.1",
-    "express": "4.18.2"
+    "bcrypt": "^5.1.1",
+    "connect-sqlite3": "^0.9.13",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/connect-sqlite3": "^0.9.5",
+    "@types/express-flash": "^0.0.5",
+    "@types/express-session": "^1.17.10",
+    "@types/passport": "^1.0.16",
+    "@types/passport-local": "^1.0.38"
   }
 }
