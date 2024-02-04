@@ -1,0 +1,19 @@
+meta {
+  name: register
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:4002/api/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "jeremy",
+    "email": "encaladajeremy@gmail.com",
+    "password": "jeremy123"
+  }
+}
